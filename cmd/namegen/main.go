@@ -15,15 +15,18 @@ func main() {
 	slowModeRate := flag.Int64("slowmode-rate", 1, "Defines the rate at which names are output in slowmode. Defaults to 1/second")
 
 	flag.Parse()
-	rand.Seed(time.Now().UnixNano())
+	rand.Seed(time.Now().UnixNano()) // initialize RNG seed
 
+	// generate numNames names
 	for i := 0; i < *numNames; i++ {
-		generateName()
+		// generate and output a name
+		pickedName := generateName()
+		fmt.Println(pickedName)
 		if *slowMode {
+			// if slow mode is enabled, delay next name by slowModeRate seconds
 			time.Sleep(time.Duration(*slowModeRate) * time.Second)
 		}
 	}
-
 }
 
 /* generateName generates one name by selecting a base name,
@@ -31,7 +34,6 @@ func main() {
 func generateName() string {
 	pickedName := getRandomName()
 	pickedName = addSuffixOrPrefix(pickedName)
-	fmt.Println(pickedName)
 	return pickedName
 }
 
@@ -61,7 +63,6 @@ func addSuffixOrPrefix(pickedName string) string {
 	prefixOrSuffix := rand.Intn(2)
 	if prefixOrSuffix > 0 {
 		// add a prefix
-
 		pickedName = getRandomPrefix() + strings.ToLower(pickedName)
 	} else {
 		// add a suffix
