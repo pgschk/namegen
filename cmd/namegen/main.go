@@ -11,12 +11,17 @@ import (
 func main() {
 	/* parse command line arguments */
 	numNames := flag.Int("n", 15, "Number of names to generate")
-	rand.Seed(time.Now().UnixNano())
+	slowMode := flag.Bool("slowmode", false, "If set the names will be output at a constant rate defined by --slowmode-rate")
+	slowModeRate := flag.Int64("slowmode-rate", 1, "Defines the rate at which names are output in slowmode. Defaults to 1/second")
 
 	flag.Parse()
+	rand.Seed(time.Now().UnixNano())
 
 	for i := 0; i < *numNames; i++ {
 		generateName()
+		if *slowMode {
+			time.Sleep(time.Duration(*slowModeRate) * time.Second)
+		}
 	}
 
 }
