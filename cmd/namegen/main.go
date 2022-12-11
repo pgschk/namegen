@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"math/rand"
 	"time"
 
 	NameGen "github.com/pgschk/namegen/pkg/namegen"
@@ -16,7 +15,6 @@ func main() {
 	slowModeRate := flag.Int64("slowmode-rate", 1, "Defines the rate at which names are output in slowmode. Defaults to 1/second")
 
 	flag.Parse()
-	rand.Seed(time.Now().UnixNano()) // initialize RNG seed
 
 	// generate numNames names
 	for i := 0; i < *numNames; i++ {

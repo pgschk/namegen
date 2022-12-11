@@ -3,6 +3,7 @@ package namegen
 import (
 	"math/rand"
 	"strings"
+	"time"
 )
 
 /* generateName generates one name by selecting a base name,
@@ -15,6 +16,7 @@ func GenerateName() string {
 
 /* getRandomName returns a random name from a list */
 func GetRandomName() string {
+	rand.Seed(time.Now().UnixNano()) // initialize RNG seed
 	randomIndex := rand.Intn(len(Names))
 	pickedName := Names[randomIndex]
 	return pickedName
