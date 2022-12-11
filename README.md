@@ -14,3 +14,7 @@ go build -o namegen ./cmd/namegen/
 # generate a different amount of names
 ./namegen -n 1
 ```
+```bash
+# generate a lot of name slowly, to read while generating
+./namegen -n 100 --slowmode
+```
