@@ -1,4 +1,4 @@
-package main
+package namegen
 
 var Names = [...]string{
 	"Adam",
